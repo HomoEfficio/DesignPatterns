@@ -67,7 +67,6 @@ fun main(args: Array<String>) {
         println("null is Any : " + (null is Any).toString())
         // null 은 Any? 타입이다.
         println("null is Any? : " + (null is Any?).toString())
-        // Any? 타입에
         // 따라서 null.toString()은 NPE를 발생하지 않는다.
         println("toString() of Any is invoked : " + null.toString())
         // null.toString() 은 문자열 "null" 을 반환한다.
@@ -103,7 +102,58 @@ fun main(args: Array<String>) {
     }
 
     // Extension Function
+    fun extensionFunctionBasic() {
 
+        println("===== extension function for String =====")
+
+        fun String.toMarkdownInclined(): String {
+            return "*" + this + "*"
+        }
+
+        fun String.toMarkdownBold(): String {
+            return "**" + this + "**"
+        }
+
+        val txt1 = "ABCDE"
+        println("original : " + txt1)
+        println("inclined : " + txt1.toMarkdownInclined())
+        println("bold : " + txt1.toMarkdownBold())
+
+        println("===== extension function for String? null =====")
+        fun String?.toMarkdownInclined(): String {
+            return "*" + this + "*"
+        }
+
+        fun String?.toMarkdownBold(): String {
+            return "**" + this + "**"
+        }
+
+        val txt2 = null
+        println("original : " + txt2)
+        println("inclined : " + txt2.toMarkdownInclined())
+        println("bold : " + txt2.toMarkdownBold())
+
+    }
+    extensionFunctionBasic()
+
+    // 확장 함수는 다형성 없이 정적 바인딩으로 동작한다
+    fun extensionFunctionStaticBinding() {
+
+        open class A
+
+        class B: A()
+
+        fun A.msg() = "This is A"
+
+        fun B.msg() = "This is B"
+
+        fun msg(a: A) {
+            println(a.msg())
+        }
+
+        msg(B())  // 다형성이 있다면 "This is B"가 출력되겠지만 확장함수는 정적 바인딩이므로 "This is A"가 출력됨
+    }
+    extensionFunctionStaticBinding()
 }
 
 
