@@ -1,7 +1,8 @@
 package Proxy.java;
 
 /**
- * Created by hanmomhanda on 2016-01-08.
+ * @author homo.efficio@gmail.com
+ *         Created on 2016-01-08.
  */
 public class ProxyPattern {
 
@@ -38,7 +39,7 @@ class Client {
     }
 
     public void doSomethingWithTarget() {
-        target.displayImage();
+        this.target.displayImage();
     }
 }
 
@@ -60,12 +61,12 @@ class RealTarget implements Target {
     }
 
     private void loadImageFromDisk() {
-        System.out.println("Loading " + fileName);
+        System.out.println("Loading " + this.fileName);
     }
 
     @Override
     public void displayImage() {
-        System.out.println("Displaying " + fileName);
+        System.out.println("Displaying " + this.fileName);
     }
 }
 
@@ -83,9 +84,9 @@ class Proxy implements Target {
 
     @Override
     public void displayImage() {
-        if (realTarget == null)
-            realTarget = new RealTarget(fileName);
-        realTarget.displayImage();
+        if (this.realTarget == null)
+            this.realTarget = new RealTarget(this.fileName);
+        this.realTarget.displayImage();
     }
 }
 
