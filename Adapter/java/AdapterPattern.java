@@ -52,10 +52,10 @@ class Adaptee {
     }
 
     public void printParen() {
-        System.out.println("("+s+")");
+        System.out.println("("+this.s+")");
     }
 
     public void printAster() {
-        System.out.println("*"+s+"*");
+        System.out.println("*"+this.s+"*");
     }
 }
