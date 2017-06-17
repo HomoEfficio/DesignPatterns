@@ -40,7 +40,7 @@ class Child implements Observer {
 
     @Override
     public void notified() {
-        System.out.println(name + "이(가) 뒤에가서 의자에 앉습니다.");
+        System.out.println(this.name + "이(가) 뒤에가서 의자에 앉습니다.");
     }
 }
 
@@ -53,16 +53,16 @@ class Subject {
     }
 
     public void addChild(Child child) {
-        childSet.add(child);
+        this.childSet.add(child);
     }
 
     public void removeChild(Child child) {
-        childSet.remove(child);
+        this.childSet.remove(child);
     }
 
     public void saySomething(String saySomething) {
-        System.out.println("+++++" + name + " : " + saySomething + "+++++");
-        for (Child child : childSet) {
+        System.out.println("+++++" + this.name + " : " + saySomething + "+++++");
+        for (Child child : this.childSet) {
             child.notified();
         }
     }
