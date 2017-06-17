@@ -68,8 +68,8 @@ class Composite implements Component {
     @Override
     public String getValue() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name).append(":[");
-        Iterator<Component> iterator = components.iterator();
+        sb.append(this.name).append(":[");
+        Iterator<Component> iterator = this.components.iterator();
         while (iterator.hasNext()) {
             sb.append(iterator.next().getValue());
             if (iterator.hasNext()) sb.append(",");
@@ -94,6 +94,6 @@ class Composite implements Component {
 //
 //    @Override
 //    public String getValue() {
-//        return "~"+name+"~";
+//        return "~"+this.name+"~";
 //    }
 //}
