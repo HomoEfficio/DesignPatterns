@@ -10,7 +10,7 @@ public class DecoratorPattern {
         AbstractPizza pizza1 = new CheeseDecorator(new ThinPizza());
         showInfo(pizza1);
 
-        AbstractPizza pizza2 = new CheeseDecorator(new HotSauceDecorator(new CheeseDecorator(new ThinPizza())));
+        AbstractPizza pizza2 = new CheeseDecorator(new HotSauceDecorator(new CheeseDecorator(new CrustPizza())));
         showInfo(pizza2);
     }
 
