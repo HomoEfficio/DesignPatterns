@@ -51,14 +51,14 @@ class CheeseDecorator(PizzaDecorator):
     def __init__(self, pizza):
         PizzaDecorator.__init__(self, pizza)
 
-    def get_decorator(self):
-        return " | 치즈(%d)" % self.price
-
     def get_description(self):
         return self.pizza.get_description() + self.get_decorator()
 
     def get_price(self):
         return self.pizza.get_price() + self.price
+
+    def get_decorator(self):
+        return " | 치즈(%d)" % self.price
 
 
 class HotSauceDecorator(PizzaDecorator):
@@ -67,14 +67,16 @@ class HotSauceDecorator(PizzaDecorator):
     def __init__(self, pizza):
         PizzaDecorator.__init__(self, pizza)
 
-    def get_decorator(self):
-        return " | 핫소스(%d)" % self.price
-
     def get_description(self):
         return self.pizza.get_description() + self.get_decorator()
 
     def get_price(self):
         return self.pizza.get_price() + self.price
+
+    def get_decorator(self):
+        return " | 핫소스(%d)" % self.price
+
+
 
 def run():
     def show_info(pizza):
