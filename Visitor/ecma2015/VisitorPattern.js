@@ -71,10 +71,10 @@ const uppercaseVisitor = (element) => console.log(`ElementName: ${element.doElem
     console.log("========== Lowercase Visitor ==========");
     // 요구사항 변경으로 Element의 child가 새로 추가되어도
     // 아래 코드는 변하지 않음
-    elements.forEach((v) => v.accept(lowercaseVisitor));
+    elements.forEach(v => v.accept(lowercaseVisitor));
 
     console.log("========== Uppercase Visitor ==========");
     // 요구사항 변경으로 Element의 child가 새로 추가되어도
     // 아래 코드는 변하지 않음
-    elements.forEach((v) => v.accept(uppercaseVisitor));
+    elements.forEach(v => v.accept(uppercaseVisitor));
 })();
