@@ -1,10 +1,10 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
 class IMoveStrategy
 {
 public:
-    virtual ~IMoveStrategy() {}
     virtual void Move() = 0;
 };
 
@@ -29,13 +29,13 @@ public:
 class IAttackStrategy
 {
 public:
-    virtual ~IAttackStrategy() {}
     virtual void Attack() = 0;
 };
 
 class KickStrategy : public IAttackStrategy
 {
 public:
+    KickStrategy() { cout << "KickStrategy Constructor Is Invoked!!!" << endl; }
     void Attack() override
     {
         cout << "kick!!!" << endl;
@@ -61,8 +61,16 @@ class Fighter
         Fighter() : moveStrategy(0) {}
         ~Fighter()
         {
-            if (this->moveStrategy) delete this->moveStrategy;
-            if (this->attackStrategy) delete this->attackStrategy;
+            if (this->moveStrategy)
+            {
+                delete this->moveStrategy;
+                cout << "moveStrategy is deleted" << endl;
+            }
+            if (this->attackStrategy)
+            {
+                delete this->attackStrategy;
+                cout << "attackStrategy is deleted" << endl;
+            }
         }
 
         void SetMoveStrategy(IMoveStrategy* moveStrategy)
@@ -90,13 +98,30 @@ class Fighter
 
 int main()
 {
-    Fighter* fighter = new Fighter();
+    // Fighter* fighter = new Fighter();
+    unique_ptr<Fighter> fighter(new Fighter());
+
+//    FlyingStrategy* flyingStrategy = new FlyingStrategy();
+//    WalkingStrategy* walkingStrategy = new WalkingStrategy();
+//
+//    KickStrategy* kickStrategy = new KickStrategy();
+//    PunchStrategy* punchStrategy = new PunchStrategy();
+
+//    FlyingStrategy* flyingStrategy;
+//    WalkingStrategy* walkingStrategy;
+//
+//    KickStrategy* kickStrategy;
+//    PunchStrategy* punchStrategy;
 
     FlyingStrategy* flyingStrategy = new FlyingStrategy();
-    WalkingStrategy* walkingStrategy = new WalkingStrategy();
+    WalkingStrategy* walkingStrategy;
 
-    KickStrategy* kickStrategy = new KickStrategy();
-    PunchStrategy* punchStrategy = new PunchStrategy();
+    KickStrategy* kickStrategy;
+    PunchStrategy* punchStrategy;
+
+    KickStrategy kickStrategy1;
+
+//    KickStrategy& kickStrategy2 = kickStrategy;
     
     cout << "===== Flying + Kick =====" << endl;
     fighter->SetMoveStrategy(flyingStrategy);
@@ -104,4 +129,6 @@ int main()
 
     fighter->Move();
     fighter->Attack();
+
+    // delete fighter;
 }
