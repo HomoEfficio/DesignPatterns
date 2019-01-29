@@ -35,21 +35,21 @@ abstract class Template {
         go2Sleep();
     }
 
-    // Tempate 인스턴스마다 달라지지 않는 기상
+    // Template 인스턴스마다 달라지지 않는 기상
     private void wakeUp() {
         System.out.println("##### Wake Up by Alarm #####");
     }
 
-    // Tempate 인스턴스마다 달라지는 출근 방식
+    // Template 인스턴스마다 달라지는 출근 방식
     protected abstract void go2Work();
 
-    // Tempate 인스턴스마다 달라지는 일과
+    // Template 인스턴스마다 달라지는 일과
     protected abstract void workHard();
 
-    // Tempate 인스턴스마다 달라지는 퇴근 방식
+    // Template 인스턴스마다 달라지는 퇴근 방식
     protected abstract void comeback2Home();
 
-    // Tempate 인스턴스마다 달라지지 않는 취침
+    // Template 인스턴스마다 달라지지 않는 취침
     private void go2Sleep() {
         System.out.println("***** Sweet Dream *****");
     }
